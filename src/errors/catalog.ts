@@ -1,10 +1,10 @@
 export enum ErrorTypes {
-  NotFound = 'NotFound',
-  InvalidInput = 'InvalidInput',
+  EntityNotFound = 'EntityNotFound',
+  InvalidMongoId = 'InvalidMongoId',
 }
 
 type ErrorResponseObject = {
-  message: string;
+  error: string;
   httpStatus: number
 };
 
@@ -13,12 +13,12 @@ export type ErrorCatalog = {
 };
 
 export const errorCatalog: ErrorCatalog = {
-  NotFound: {
-    message: 'Entity not found',
+  EntityNotFound: {
+    error: 'Object not found',
     httpStatus: 404,
   },
-  InvalidInput: {
-    message: 'Invalid input data',
+  InvalidMongoId: {
+    error: 'Id must have 24 hexadecimal characters',
     httpStatus: 400,
   },
 };

@@ -18,12 +18,12 @@ export default abstract class MongoModel<T> implements IModel<T> {
   }
 
   public async readOne(_id: string): Promise<T | null> {
-    if (!isValidObjectId(_id)) throw new Error(ErrorTypes.InvalidInput);
+    if (!isValidObjectId(_id)) throw new Error(ErrorTypes.InvalidMongoId);
     return this._model.findById({ _id });
   }
 
   public async update(_id: string, obj: T): Promise<T | null> {
-    if (!isValidObjectId(_id)) throw new Error(ErrorTypes.InvalidInput);
+    if (!isValidObjectId(_id)) throw new Error(ErrorTypes.InvalidMongoId);
     return this._model.findByIdAndUpdate(
       { _id },
       { ...obj } as UpdateQuery<T>,
@@ -32,7 +32,7 @@ export default abstract class MongoModel<T> implements IModel<T> {
   }
 
   public async delete(_id: string): Promise<T | null> {
-    if (!isValidObjectId(_id)) throw new Error(ErrorTypes.InvalidInput);
+    if (!isValidObjectId(_id)) throw new Error(ErrorTypes.InvalidMongoId);
     return this._model.findByIdAndDelete({ _id });
   }
 }

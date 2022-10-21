@@ -23,13 +23,13 @@ export default class CarService implements IService<ICar> {
 
   public async readOne(_id:string):Promise<ICar> {
     const carById = await this._car.readOne(_id);
-    if (!carById) throw new Error(ErrorTypes.NotFound);
+    if (!carById) throw new Error(ErrorTypes.EntityNotFound);
     return carById;
   }
 
   public async delete(_id:string):Promise<ICar> {
     const carDeleted = await this._car.delete(_id);
-    if (!carDeleted) throw new Error(ErrorTypes.NotFound);
+    if (!carDeleted) throw new Error(ErrorTypes.EntityNotFound);
     return carDeleted;
   }
 
@@ -37,7 +37,7 @@ export default class CarService implements IService<ICar> {
     const parsed = carSchema.partial().safeParse(obj);
     if (!parsed.success) throw parsed.error;
     const carUpdated = await this._car.update(_id, parsed.data);
-    if (!carUpdated) throw new Error(ErrorTypes.NotFound);
+    if (!carUpdated) throw new Error(ErrorTypes.EntityNotFound);
     return carUpdated;
   }
 }
