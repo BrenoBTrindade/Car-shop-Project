@@ -10,7 +10,7 @@ export default class CarController {
 
   public async create(req: Request, res: Response<ICar>) {
     const result = await this._service.create(req.body);
-    return res.status(200).json(result);
+    return res.status(201).json(result);
   }
 
   public async read(req: Request, res: Response<ICar[]>) {
