@@ -1,4 +1,3 @@
-import { string } from 'joi';
 import { model as mongoseCreateModel, Schema } from 'mongoose';
 import { ICar } from '../interfaces/ICar';
 import MongoModel from './MongoModel';
