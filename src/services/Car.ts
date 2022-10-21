@@ -34,6 +34,7 @@ export default class CarService implements IService<ICar> {
   }
 
   public async update(_id: string, obj: unknown):Promise<ICar> {
+    if (JSON.stringify(obj) === '{}') throw new Error(ErrorTypes.InvalidObj);
     const parsed = carSchema.partial().safeParse(obj);
     if (!parsed.success) throw parsed.error;
     const carUpdated = await this._car.update(_id, parsed.data);
