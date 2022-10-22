@@ -14,6 +14,8 @@ describe('Teste da Car Controller', () => {
   const res = {} as Response;
 
   beforeEach(() => {
+    sinon.stub(carService, 'readOne').resolves(carMock);
+
     res.status = sinon.stub().returns(res);
     res.json = sinon.stub().returns(res);
   });
@@ -34,6 +36,18 @@ describe('Teste da Car Controller', () => {
     });
   });
 
+  describe('Procurando um carro por id', () => {
+    beforeEach(() => {
+      sinon.stub(carService, 'read').resolves([carMockWithId]);
+    });
+
+    it('Fluxo de sucesso', async () => {
+      req.params = {id: carMockWithId._id}
+      await carController.readOne(req, res);
+
+      expect((res.status as sinon.SinonStub).calledWith(200)).to.be.true;
+    });
+  });
 
   describe('Criando um carro', () => {
     beforeEach(() => {
